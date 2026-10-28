@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slate &amp; Co. | AI Solutions and Real Estate</title>
+  <meta name="description" content="We help real estate and finance firms put AI to work, and invest in Midwestern multifamily.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Tokens ---------- */
+    :root {
+      --slate: #5f768d;        /* hero, buttons (white text passes WCAG AA) */
+      --label: #566d84;        /* eyebrows and small labels on light backgrounds */
+      --ink: #12171d;
+      --muted: #4f5c69;
+      --soft: #f0f3f7;
+      --line: #e0e5ec;
+      --fill: #e1e7ef;
+      --night: #283542;
+      --coral: #ff6b6b;
+      --white: #ffffff;
+      --header-h: 77px;
+      --pad: clamp(20px, 2vw, 28px);
+      --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    /* ---------- Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 400;
+      color: var(--ink);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    h1, h2, h3, p { margin: 0; }
+    :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+
+    .wrap { max-width: 1440px; margin-inline: auto; padding-inline: var(--pad); }
+    section[id] { scroll-margin-top: var(--header-h); }
+
+    .skip {
+      position: absolute; left: 12px; top: -60px; z-index: 30;
+      background: var(--ink); color: var(--white); padding: 10px 16px; text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--white);
+      min-height: var(--header-h);
+    }
+    .bar {
+      min-height: var(--header-h);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand {
+      font-size: 1.4rem; font-weight: 500; letter-spacing: -0.01em;
+      text-decoration: none; color: var(--ink); justify-self: start;
+    }
+    .nav { display: flex; gap: 40px; }
+    .nav a { text-decoration: none; font-size: 1.05rem; color: var(--muted); }
+    .nav a:hover { color: var(--ink); }
+    .btn-contact {
+      justify-self: end;
+      background: var(--slate); color: var(--white);
+      font-size: 1.05rem; font-weight: 500; text-decoration: none;
+      padding: 12px 22px;
+    }
+    .btn-contact:hover { background: #4e6479; }
+
+    /* ---------- Hero ---------- */
+    .hero { background: var(--slate); color: var(--white); }
+    .hero .wrap {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      align-items: center;
+      gap: 48px;
+      min-height: 646px;
+      padding-block: 80px;
+    }
+    .hero-eyebrow {
+      font-size: 1.1rem; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+    .hero h1 {
+      font-size: clamp(2.9rem, 5.6vw, 4.6rem);
+      font-weight: 500; line-height: 1.16; letter-spacing: -0.03em;
+      max-width: 9.5em;
+    }
+    .hero-lede {
+      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+      font-weight: 300; line-height: 1.55;
+      max-width: 25em; margin-top: 36px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 44px; }
+    .btn {
+      display: inline-flex; align-items: center;
+      min-height: 58px; padding: 0 25px;
+      font-size: 1.1rem; font-weight: 400; text-decoration: none;
+      border: 1px solid transparent;
+    }
+    .btn-solid { background: #f8fafc; color: var(--ink); }
+    .btn-solid:hover { background: var(--white); }
+    .btn-outline { border-color: rgba(255, 255, 255, 0.7); color: var(--white); }
+    .btn-outline:hover { background: rgba(255, 255, 255, 0.12); }
+    .hero-art { justify-self: end; width: 100%; max-width: 600px; }
+
+    /* ---------- Logo strip ---------- */
+    .logos { background: var(--white); border-bottom: 1px solid var(--line); }
+    .logos .wrap { padding-block: 64px 76px; }
+    .logos-label {
+      text-align: center; font-size: 0.95rem; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+    }
+    .logo-row {
+      list-style: none; padding: 0; margin: 52px auto 0; max-width: 1180px;
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 56px 72px; align-items: center;
+    }
+    .logo-row img { width: min(var(--w), 42vw); }
+
+    /* ---------- Shared section layout ---------- */
+    .section { padding-block: 120px; }
+    .section-soft { background: var(--soft); }
+    .eyebrow {
+      display: flex; align-items: center; gap: 22px;
+      font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--label);
+      margin-bottom: 40px;
+    }
+    .eyebrow::after { content: none; }
+    .eyebrow .rule { width: 50px; height: 1px; background: var(--label); }
+    .split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+    }
+    .split h2 {
+      font-size: clamp(2rem, 3.4vw, 2.75rem);
+      font-weight: 500; line-height: 1.15; letter-spacing: -0.025em;
+      max-width: 12em;
+    }
+    .split .copy p {
+      font-size: 1.3rem; font-weight: 300; line-height: 1.6; color: var(--muted);
+    }
+    .split .copy p + p { margin-top: 28px; }
+
+    /* ---------- Card grids ---------- */
+    .cells {
+      display: grid; margin-top: 80px;
+      border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+    }
+    .cells > * { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .cells-3 { grid-template-columns: repeat(3, 1fr); }
+    .cell { background: var(--white); padding: 40px 40px 48px; }
+    .cell h3 { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
+    .cell p { margin-top: 16px; font-size: 1.07rem; font-weight: 300; line-height: 1.65; color: var(--muted); }
+    .cell-filler { background: var(--fill); }
+
+    .subhead {
+      font-size: clamp(1.6rem, 2.4vw, 1.95rem);
+      font-weight: 500; letter-spacing: -0.02em;
+      margin-top: 110px;
+    }
+    .usecases {
+      list-style: none; padding: 0; margin: 40px 0 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
+    }
+    .usecase {
+      background: var(--white); border: 1px solid var(--line);
+      padding: 30px 30px 36px;
+      display: grid; grid-template-columns: 44px 1fr; column-gap: 0;
+    }
+    .usecase .num { font-size: 1.05rem; color: var(--label); padding-top: 4px; }
+    .usecase h3 { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.015em; }
+    .usecase p { margin-top: 14px; font-size: 1.12rem; font-weight: 300; line-height: 1.55; color: var(--muted); }
+
+    /* ---------- Real estate ---------- */
+    #real-estate .cells { margin-top: 80px; }
+
+    /* ---------- Team ---------- */
+    .disciplines {
+      margin-top: 80px;
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      list-style: none; padding: 0;
+    }
+    .disciplines li {
+      text-align: center; padding: 56px 16px;
+      font-size: 1.05rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--label);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact { background: var(--night); color: var(--white); padding-block: 120px; }
+    .contact h2 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;
+    }
+    .contact p { margin-top: 28px; max-width: 24em; font-size: 1.25rem; font-weight: 300; color: #d7dde4; }
+    .contact-links { margin-top: 56px; display: grid; gap: 14px; justify-items: start; }
+    .contact-links a { color: var(--coral); font-size: 1.25rem; text-decoration: none; }
+    .contact-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    /* ---------- Footer ---------- */
+    .site-footer { background: var(--white); }
+    .site-footer .wrap {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+      padding-block: 28px; font-size: 1.05rem; color: var(--muted);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px) {
+      .hero .wrap { grid-template-columns: 1fr; min-height: 0; padding-block: 64px; }
+      .hero-art { justify-self: start; max-width: 420px; }
+      .split { grid-template-columns: 1fr; gap: 28px; }
+      .cells-3 { grid-template-columns: 1fr 1fr; }
+      .cells-3.three-up { grid-template-columns: 1fr; }
+      .cell-filler { display: none; }
+      .usecases { grid-template-columns: 1fr; }
+      .section { padding-block: 88px; }
+      .contact { padding-block: 88px; }
+    }
+    @media (max-width: 640px) {
+      .bar { grid-template-columns: 1fr auto; padding-block: 12px; }
+      .nav { order: 3; grid-column: 1 / -1; justify-content: space-between; gap: 12px; }
+      .nav a { font-size: 1rem; }
+      .cells-3 { grid-template-columns: 1fr; }
+      .cell { padding: 30px 24px 34px; }
+      .disciplines { grid-template-columns: 1fr; }
+      .disciplines li { padding: 28px 16px; border-bottom: 1px solid var(--line); }
+      .disciplines li:last-child { border-bottom: 0; }
+      .logo-row { gap: 40px 40px; margin-top: 40px; }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="#top">Slate &amp; Co.</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#ai-solutions">AI Solutions</a>
+        <a href="#real-estate">Real Estate</a>
+        <a href="#team">Team</a>
+      </nav>
+      <a class="btn-contact" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div>
+          <p class="hero-eyebrow">AI Solutions · Real Estate</p>
+          <h1 id="hero-title">Built on solid fundamentals.</h1>
+          <p class="hero-lede">We help real estate and finance firms put AI to work, and invest in Midwestern multifamily.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#ai-solutions">Explore AI solutions</a>
+            <a class="btn btn-outline" href="#real-estate">Our real estate focus</a>
+          </div>
+        </div>
+        <img class="hero-art" src="assets/slate-and-co-logo.png" width="806" height="440"
+             alt="Slate &amp; Co. logo: the company name set on the web of a steel I-beam">
+      </div>
+    </section>
+
+    <!-- Logo strip -->
+    <section class="logos" aria-labelledby="logos-title">
+      <div class="wrap">
+        <h2 class="logos-label" id="logos-title">Companies our teammates have formerly worked with</h2>
+        <ul class="logo-row">
+          <li><img src="assets/logos/brookfield.png" style="--w:218px" width="319" height="87" alt="Brookfield Asset Management"></li>
+          <li><img src="assets/logos/pgim.png" style="--w:190px" width="400" height="128" alt="PGIM"></li>
+          <li><img src="assets/logos/morgan-stanley.png" style="--w:240px" width="480" height="93" alt="Morgan Stanley"></li>
+          <li><img src="assets/logos/harrison-street.png" style="--w:240px" width="480" height="88" alt="Harrison Street Asset Management"></li>
+          <li><img src="assets/logos/ares.png" style="--w:190px" width="400" height="126" alt="Ares"></li>
+          <li><img src="assets/logos/jpmorgan.png" style="--w:240px" width="318" height="66" alt="J.P. Morgan"></li>
+          <li><img src="assets/logos/bank-of-america-merrill-lynch.png" style="--w:228px" width="460" height="120" alt="Bank of America Merrill Lynch"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 01 AI Solutions -->
+    <section class="section section-soft" id="ai-solutions" aria-labelledby="ai-title">
+      <div class="wrap">
+        <div class="eyebrow"><span>01</span><span class="rule" aria-hidden="true"></span><span>AI Solutions</span></div>
+        <div class="split">
+          <h2 id="ai-title">AI built by people who know real estate and finance.</h2>
+          <div class="copy">
+            <p>We’re an AI solutions team focused on real estate and finance. We speak your language—cap rates, waterfalls, rent rolls—so we build tools your team will actually use.</p>
+          </div>
+        </div>
+
+        <div class="cells cells-3">
+          <div class="cell">
+            <h3>AI strategy &amp; roadmaps</h3>
+            <p>Assess where AI creates real value in your firm and prioritize what to build first.</p>
+          </div>
+          <div class="cell">
+            <h3>AI environment setup</h3>
+            <p>Secure, compliant AI workspaces and tooling configured for your team and your data.</p>
+          </div>
+          <div class="cell">
+            <h3>Custom AI tools</h3>
+            <p>Purpose-built assistants and applications trained around your workflows.</p>
+          </div>
+          <div class="cell">
+            <h3>Dashboards &amp; visualizations</h3>
+            <p>Clear, live views of portfolio, market, and fund performance.</p>
+          </div>
+          <div class="cell">
+            <h3>Workflow automation</h3>
+            <p>Automate rent roll parsing, OM review, lease abstraction, and reporting.</p>
+          </div>
+          <div class="cell cell-filler" aria-hidden="true"></div>
+        </div>
+
+        <h3 class="subhead">Example use cases</h3>
+        <ol class="usecases">
+          <li class="usecase">
+            <span class="num">01</span>
+            <div>
+              <h3>OM &amp; rent roll extraction</h3>
+              <p>Turn PDF offering memos and rent rolls into clean, underwriting-ready data in minutes.</p>
+            </div>
+          </li>
+          <li class="usecase">
+            <span class="num">02</span>
+            <div>
+              <h3>Portfolio dashboard</h3>
+              <p>One view of occupancy, NOI, and leasing across every asset.</p>
+            </div>
+          </li>
+          <li class="usecase">
+            <span class="num">03</span>
+            <div>
+              <h3>Investor reporting copilot</h3>
+              <p>Draft quarterly letters and LP updates from your existing data.</p>
+            </div>
+          </li>
+          <li class="usecase">
+            <span class="num">04</span>
+            <div>
+              <h3>Internal AI environment</h3>
+              <p>Set up a shared AI environment where teams and users can create what they need, when they need it, as efficiently as possible.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 02 Real Estate -->
+    <section class="section" id="real-estate" aria-labelledby="re-title">
+      <div class="wrap">
+        <div class="eyebrow"><span>02</span><span class="rule" aria-hidden="true"></span><span>Real Estate</span></div>
+        <div class="split">
+          <h2 id="re-title">Midwestern multifamily, run by a modern, lean team.</h2>
+          <div class="copy">
+            <p>Our team brings together backgrounds in real estate, finance, and software engineering. We pair institutional discipline with modern technology to find and operate apartment communities across the Midwest.</p>
+          </div>
+        </div>
+
+        <div class="cells cells-3 three-up">
+          <div class="cell">
+            <h3>Midwest markets</h3>
+            <p>We focus on stable, undervalued Midwestern metros where fundamentals beat the hype.</p>
+          </div>
+          <div class="cell">
+            <h3>Multifamily</h3>
+            <p>Apartment communities that provide durable, essential housing and steady cash flow.</p>
+          </div>
+          <div class="cell">
+            <h3>Data-driven underwriting</h3>
+            <p>We use the same AI tools we build for clients to source and evaluate deals faster.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Team -->
+    <section class="section section-soft" id="team" aria-labelledby="team-title">
+      <div class="wrap">
+        <div class="eyebrow"><span>03</span><span class="rule" aria-hidden="true"></span><span>Team</span></div>
+        <div class="split">
+          <h2 id="team-title">Institutional experience. Startup speed.</h2>
+          <div class="copy">
+            <p>Our teammates have worked across private equity, real estate, and software engineering at firms like Bank of America Merrill Lynch and Intuit.</p>
+            <p>Together we combine deep real estate and finance expertise with hands-on software engineering, so we understand both the deal and the code behind the tools that support it.</p>
+          </div>
+        </div>
+
+        <ul class="disciplines">
+          <li>Real Estate</li>
+          <li>Finance</li>
+          <li>Software Engineering</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title">Let’s talk.</h2>
+        <p>Exploring AI for your firm, or interested in our real estate work? Reach out and we’ll get back to you.</p>
+        <div class="contact-links">
+          <a href="mailto:TBD@slate-and-co.com">TBD@slate-and-co.com</a>
+          <a href="tel:+10000000000">(TBD) TBD-TBD</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Slate &amp; Co.</span>
+      <span>Midwest · Real Estate · AI</span>
+    </div>
+  </footer>
+</body>
+</html>
