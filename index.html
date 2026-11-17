@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Slate &amp; Co. | AI Solutions and Real Estate</title>
-  <meta name="description" content="We help real estate & finance firms turn AI into results, and we use the same tools to invest in Midwest multifamily.">
+  <title>Slate &amp; Co. | AI Solutions</title>
+  <meta name="description" content="We help real estate, financial services, and manufacturing firms turn AI into results.">
+  <meta property="og:title" content="Slate &amp; Co. | AI Solutions">
+  <meta property="og:description" content="We help real estate, financial services, and manufacturing firms put AI to work.">
+  <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,14 +17,13 @@
     /* ---------- Tokens ---------- */
     :root {
       --slate: #5f768d;        /* hero, buttons (white text passes WCAG AA) */
+      --slate-hover: #4e6479;
       --label: #566d84;        /* eyebrows and small labels on light backgrounds */
       --ink: #12171d;
       --muted: #4f5c69;
       --soft: #f0f3f7;
       --line: #e0e5ec;
-      --fill: #e1e7ef;
       --night: #283542;
-      --coral: #ff6b6b;
       --white: #ffffff;
       --header-h: 77px;
       --pad: clamp(20px, 2vw, 28px);
@@ -81,7 +83,7 @@
       font-size: 1.05rem; font-weight: 500; text-decoration: none;
       padding: 12px 22px;
     }
-    .btn-contact:hover { background: #4e6479; }
+    .btn-contact:hover { background: var(--slate-hover); }
 
     /* ---------- Hero ---------- */
     .hero { background: var(--slate); color: var(--white); }
@@ -144,7 +146,6 @@
       letter-spacing: 0.2em; text-transform: uppercase; color: var(--label);
       margin-bottom: 40px;
     }
-    .eyebrow::after { content: none; }
     .eyebrow .rule { width: 50px; height: 1px; background: var(--label); }
     .split {
       display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
@@ -157,7 +158,6 @@
     .split .copy p {
       font-size: 1.3rem; font-weight: 300; line-height: 1.6; color: var(--muted);
     }
-    .split .copy p + p { margin-top: 28px; }
 
     /* ---------- Card grids ---------- */
     .cells {
@@ -166,31 +166,69 @@
     }
     .cells > * { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .cells-3 { grid-template-columns: repeat(3, 1fr); }
+    .cells-2 { grid-template-columns: repeat(2, 1fr); }
     .cell { background: var(--white); padding: 40px 40px 48px; }
     .cell h3 { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
     .cell p { margin-top: 16px; font-size: 1.07rem; font-weight: 300; line-height: 1.65; color: var(--muted); }
-    .cell-filler { display: none;}
 
-    .subhead {
-      font-size: clamp(1.6rem, 2.4vw, 1.95rem);
-      font-weight: 500; letter-spacing: -0.02em;
-      margin-top: 110px;
+    /* ---------- Workflow steps ---------- */
+    .steps {
+      list-style: none; padding: 0; margin: 80px 0 0;
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
     }
-    .usecases {
-      list-style: none; padding: 0; margin: 40px 0 0;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
-    }
-    .usecase {
+    .steps li { padding: 36px 28px 0 0; }
+    .steps .num { font-size: 1rem; font-weight: 600; color: var(--label); letter-spacing: 0.08em; }
+    .steps h3 { margin-top: 18px; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
+    .steps p { margin-top: 12px; font-size: 1.02rem; font-weight: 300; line-height: 1.6; color: var(--muted); }
+
+    /* ---------- Past clients ---------- */
+    .client {
       background: var(--white); border: 1px solid var(--line);
-      padding: 30px 30px 36px;
-      display: grid; grid-template-columns: 44px 1fr; column-gap: 0;
+      padding: 48px 44px 52px;
+      display: flex; flex-direction: column;
     }
-    .usecase .num { font-size: 1.05rem; color: var(--label); padding-top: 4px; }
-    .usecase h3 { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.015em; }
-    .usecase p { margin-top: 14px; font-size: 1.12rem; font-weight: 300; line-height: 1.55; color: var(--muted); }
+    .client-mark {
+      height: 64px; display: flex; align-items: center;
+    }
+    .client-mark img { height: 64px; width: auto; max-width: 260px; object-fit: contain; object-position: left center; }
+    .client-name {
+      font-size: 1.35rem; font-weight: 500; letter-spacing: -0.01em; line-height: 1.2;
+    }
+    .client p.desc {
+      margin-top: 24px; font-size: 1.12rem; font-weight: 300; line-height: 1.6; color: var(--muted);
+    }
+    .metrics {
+      list-style: none; padding: 0; margin: 32px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .metrics li {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+      padding: 16px 0; border-bottom: 1px solid var(--line);
+      font-size: 1.05rem; color: var(--muted); font-weight: 300;
+    }
+    .metrics strong { font-weight: 600; color: var(--ink); white-space: nowrap; }
 
-    /* ---------- Real estate ---------- */
-    #real-estate .cells { margin-top: 80px; }
+    /* ---------- Client carousel ---------- */
+    .carousel { margin-top: 80px; }
+    .carousel-track {
+      display: flex; gap: 24px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      scrollbar-width: none; -ms-overflow-style: none;
+      padding-bottom: 4px;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-track:focus-visible { outline-offset: 6px; }
+    .carousel-track .slide { flex: 0 0 calc((100% - 24px) / 2); scroll-snap-align: start; }
+    .carousel-controls { display: flex; justify-content: flex-end; gap: 12px; margin-top: 32px; }
+    .carousel-btn {
+      width: 56px; height: 56px; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--white); color: var(--ink);
+      border: 1px solid var(--label); cursor: pointer;
+    }
+    .carousel-btn:hover { background: var(--soft); }
+    .carousel-btn svg { width: 24px; height: 24px; }
 
     /* ---------- Team ---------- */
     .disciplines {
@@ -211,27 +249,29 @@
       font-size: clamp(2.2rem, 4vw, 3.2rem);
       font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;
     }
-    .contact p { margin-top: 28px; max-width: 24em; font-size: 1.25rem; font-weight: 300; color: #d7dde4; }
-    .contact-links { margin-top: 56px; display: grid; gap: 14px; justify-items: start; }
-    .contact-links a { color: var(--soft); font-size: 1.25rem; text-decoration: none; } /*Change to White from coral once complete*/
-    .contact-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .contact p { margin-top: 28px; max-width: 26em; font-size: 1.25rem; font-weight: 300; color: #d7dde4; }
+    .contact-actions { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+    .contact .btn-solid { color: var(--ink); }
+    .contact-email { color: var(--white); font-size: 1.25rem; text-decoration: none; }
+    .contact-email:hover { text-decoration: underline; text-underline-offset: 4px; }
 
     /* ---------- Footer ---------- */
-    .site-footer { background: var(--white); }
+    .site-footer { background: var(--white); border-top: 1px solid var(--line); }
     .site-footer .wrap {
       display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
       padding-block: 28px; font-size: 1.05rem; color: var(--muted);
     }
+    .site-footer a { color: var(--muted); }
+    .site-footer a:hover { color: var(--ink); }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 960px) {
       .hero .wrap { grid-template-columns: 1fr; min-height: 0; padding-block: 64px; }
-      .hero-art { justify-self: start; max-width: 420px; }
+      .hero-art { display: none; }
+      .hero-actions { justify-content: center; }
       .split { grid-template-columns: 1fr; gap: 28px; }
       .cells-3 { grid-template-columns: 1fr 1fr; }
-      .cells-3.three-up { grid-template-columns: 1fr; }
-      .cell-filler { display: none; }
-      .usecases { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
       .section { padding-block: 88px; }
       .contact { padding-block: 88px; }
     }
@@ -239,8 +279,11 @@
       .bar { grid-template-columns: 1fr auto; padding-block: 12px; }
       .nav { order: 3; grid-column: 1 / -1; justify-content: space-between; gap: 12px; }
       .nav a { font-size: 1rem; }
-      .cells-3 { grid-template-columns: 1fr; }
+      .cells-3, .cells-2 { grid-template-columns: 1fr; }
+      .carousel-track .slide { flex-basis: 100%; }
       .cell { padding: 30px 24px 34px; }
+      .client { padding: 36px 26px 40px; }
+      .steps { grid-template-columns: 1fr; }
       .disciplines { grid-template-columns: 1fr; }
       .disciplines li { padding: 28px 16px; border-bottom: 1px solid var(--line); }
       .disciplines li:last-child { border-bottom: 0; }
@@ -257,10 +300,10 @@
       <a class="brand" href="#top">Slate &amp; Co.</a>
       <nav class="nav" aria-label="Primary">
         <a href="#ai-solutions">AI Solutions</a>
-        <a href="#real-estate">Real Estate</a>
-        <a href="#team">Team</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#clients">Clients</a>
       </nav>
-      <a class="btn-contact" href="#contact">Contact</a>
+      <a class="btn-contact" href="mailto:info@slateand.co">Contact</a>
     </div>
   </header>
 
@@ -269,12 +312,12 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap">
         <div>
-          <p class="hero-eyebrow">AI Solutions · Real Estate</p>
-          <h1 id="hero-title">Built on solid fundamentals.</h1>
-          <p class="hero-lede">We help real estate and finance firms put AI to work, and invest in Midwestern multifamily.</p>
+          <p class="hero-eyebrow">AI Solutions · Real Estate · Financial Services · Manufacturing</p>
+          <h1 id="hero-title">AI built for real estate, financial services, and manufacturing.</h1>
+          <p class="hero-lede">We help real estate, financial services, and manufacturing firms put AI to work.</p>
           <div class="hero-actions">
-            <a class="btn btn-solid" href="#ai-solutions">Explore AI solutions</a>
-            <a class="btn btn-outline" href="#real-estate">Our real estate focus</a>
+            <a class="btn btn-solid" href="#workflow">See the workflow</a>
+            <a class="btn btn-outline" href="mailto:info@slateand.co">Contact</a>
           </div>
         </div>
         <img class="hero-art" src="assets/slate-and-co-logo.png" width="806" height="440"
@@ -294,6 +337,7 @@
           <li><img src="assets/logos/ares.png" style="--w:190px" width="400" height="126" alt="Ares"></li>
           <li><img src="assets/logos/jpmorgan.png" style="--w:240px" width="318" height="66" alt="J.P. Morgan"></li>
           <li><img src="assets/logos/bank-of-america-merrill-lynch.png" style="--w:228px" width="460" height="120" alt="Bank of America Merrill Lynch"></li>
+          <li><img src="assets/logos/Intuit-Logo-2016.png" style="--w:200px" alt="Intuit"></li>
         </ul>
       </div>
     </section>
@@ -303,110 +347,150 @@
       <div class="wrap">
         <div class="eyebrow"><span>01</span><span class="rule" aria-hidden="true"></span><span>AI Solutions</span></div>
         <div class="split">
-          <h2 id="ai-title">AI built by people who know real estate and finance.</h2>
+          <h2 id="ai-title">AI built by people who know real estate, financial services, and manufacturing.</h2>
           <div class="copy">
-            <p>We’re an AI solutions team focused on real estate and finance. We speak your language - underwritings, waterfalls, cap rates. So, we build tools your team will actually use.</p>
+            <p>We speak your language, from data pipelines to reporting. So we build tools your team will actually use.</p>
           </div>
         </div>
 
         <div class="cells cells-3">
           <div class="cell">
             <h3>AI strategy &amp; roadmaps</h3>
-            <p>Assess where AI creates real value in your firm and prioritize what to build first.</p>
+            <p>Find where AI creates real value, and what to build first.</p>
           </div>
           <div class="cell">
             <h3>AI environment setup</h3>
-            <p>Secure, compliant AI workspaces and tooling configured for your team and your data.</p>
+            <p>Secure, compliant AI workspaces for your team and data.</p>
           </div>
           <div class="cell">
             <h3>Custom AI tools</h3>
-            <p>Purpose-built assistants and applications trained around your workflows.</p>
+            <p>Purpose-built assistants trained around your workflows.</p>
           </div>
           <div class="cell">
             <h3>Dashboards &amp; visualizations</h3>
-            <p>Clear, live views of portfolio, market, and fund performance.</p>
+            <p>Live views of your operations and key metrics.</p>
           </div>
           <div class="cell">
             <h3>Workflow automation</h3>
-            <p>Automate rent roll parsing, OM review, lease abstraction, and reporting.</p>
+            <p>Document parsing, data extraction, and reporting.</p>
           </div>
           <div class="cell">
             <h3>Live-service applications</h3>
-            <p>Deploy tools that automatically execute your workflow on your schedule.</p>
+            <p>Tools that run your workflow on your schedule.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Workflow -->
+    <section class="section" id="workflow" aria-labelledby="workflow-title">
+      <div class="wrap">
+        <div class="eyebrow"><span>02</span><span class="rule" aria-hidden="true"></span><span>Workflow</span></div>
+        <div class="split">
+          <h2 id="workflow-title">Start with one workflow.</h2>
+          <div class="copy">
+            <p>Pick the process that costs your team the most time. We map it, automate it, and measure the results.</p>
           </div>
         </div>
 
-        <h3 class="subhead">Example use cases</h3>
-        <ol class="usecases">
-         <li class="usecase">
+        <ol class="steps">
+          <li>
             <span class="num">01</span>
-            <div>
-              <h3>Build your internal AI environment</h3>
-              <p>Give your team a shared workspace to build their own tools on demand, and get hours back every week.</p>
-            </div>
+            <h3>Discovery</h3>
+            <p>Learn how your team works today.</p>
           </li>
-          <li class="usecase">
+          <li>
             <span class="num">02</span>
-            <div>
-              <h3>Launch live custom dashboards</h3>
-              <p>See occupancy, NOI, and leasing across every asset in real time, built around how you run your portfolio.</p>
-            </div>
+            <h3>Map</h3>
+            <p>Document the workflow and where the time goes.</p>
           </li>
-          <li class="usecase">
+          <li>
             <span class="num">03</span>
-            <div>
-              <h3>Automate investor reporting</h3>
-              <p>Generate quarterly letters and LP updates from your existing data. You review and send.</p>
-            </div>
+            <h3>Build</h3>
+            <p>Design and build the tool with your team.</p>
           </li>
-          <li class="usecase">
+          <li>
             <span class="num">04</span>
-            <div>
-              <h3>Eliminate manual underwriting prep</h3>
-              <p>Extract OM data and analyze rent rolls in minutes, not hours, so deals get evaluated faster.</p>
-            </div>
+            <h3>Measure</h3>
+            <p>Set clear metrics and track real results.</p>
+          </li>
+          <li>
+            <span class="num">05</span>
+            <h3>Refine</h3>
+            <p>Improve the tool based on what the data shows.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- 02 Real Estate -->
-    <section class="section" id="real-estate" aria-labelledby="re-title">
+    <!-- 03 Clients -->
+    <section class="section section-soft" id="clients" aria-labelledby="clients-title">
       <div class="wrap">
-        <div class="eyebrow"><span>02</span><span class="rule" aria-hidden="true"></span><span>Real Estate</span></div>
+        <div class="eyebrow"><span>03</span><span class="rule" aria-hidden="true"></span><span>Clients</span></div>
         <div class="split">
-          <h2 id="re-title">Midwestern multifamily, run by a modern, lean team.</h2>
+          <h2 id="clients-title">Results for past clients.</h2>
           <div class="copy">
-            <p>Our team brings together backgrounds in real estate, finance, and software engineering. We pair institutional discipline with modern technology to find and operate apartment communities across the Midwest.</p>
+            <p>Automation projects we have delivered and the time they return every month.</p>
           </div>
         </div>
 
-        <div class="cells cells-3 three-up">
-          <div class="cell">
-            <h3>Midwest markets</h3>
-            <p>We focus on stable Midwestern metros with stronng fundamentals.</p>
+        <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Past client results">
+          <div class="carousel-track" tabindex="0">
+            <article class="client slide">
+              <div class="client-mark">
+                <h3 class="client-name">Private Real Estate Company</h3>
+              </div>
+              <p class="desc">Automated the full underwriting process, daily reporting, and a data pipeline.</p>
+              <ul class="metrics">
+                <li><span>Underwriting</span><strong>80 hours / month</strong></li>
+                <li><span>Daily reporting</span><strong>30 hours / month</strong></li>
+                <li><span>Data pipeline</span><strong>15 hours / month</strong></li>
+                <li><span>Annual savings</span><strong>$30k+</strong></li>
+              </ul>
+            </article>
+
+            <article class="client slide">
+              <div class="client-mark">
+                <img src="assets/logos/SLOAN.png" alt="Sloan">
+              </div>
+              <p class="desc">Automated a CAD generation pipeline for design engineers.</p>
+              <ul class="metrics">
+                <li><span>Time saved</span><strong>30 hours / month</strong></li>
+                <li><span>Annual savings</span><strong>$10k</strong></li>
+              </ul>
+            </article>
+
+            <article class="client slide">
+              <div class="client-mark">
+                <img src="assets/logos/Legrand.png" alt="LeGrand">
+              </div>
+              <p class="desc">Automated a lighting subsidiary’s driver board configuration system.</p>
+              <ul class="metrics">
+                <li><span>Time saved</span><strong>20 hours / month</strong></li>
+              </ul>
+            </article>
           </div>
-          <div class="cell">
-            <h3>Multifamily</h3>
-            <p>Apartment communities that provide durable, essential housing and steady cash flow.</p>
-          </div>
-          <div class="cell">
-            <h3>Data-driven underwriting</h3>
-            <p>We use the same AI tools we build for clients to source and evaluate deals faster.</p>
+
+          <div class="carousel-controls">
+            <button class="carousel-btn" type="button" data-dir="-1" aria-label="Previous client">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="carousel-btn" type="button" data-dir="1" aria-label="Next client">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 03 Team -->
+    <!-- 04 Team -->
     <section class="section section-soft" id="team" aria-labelledby="team-title">
       <div class="wrap">
-        <div class="eyebrow"><span>03</span><span class="rule" aria-hidden="true"></span><span>Team</span></div>
+        <div class="eyebrow"><span>04</span><span class="rule" aria-hidden="true"></span><span>Team</span></div>
         <div class="split">
           <h2 id="team-title">Institutional experience. Startup speed.</h2>
           <div class="copy">
-            <p>Our teammates have worked across private equity, real estate, and software engineering at firms like Bank of America, Merrill Lynch, and Intuit.</p>
-            <p>Together we combine deep real estate and finance expertise with hands-on software engineering, so we understand both the deal and the code behind the tools that support it.</p>
+            <p>Our teammates have worked across real estate, finance, and software engineering at firms like Bank of America, Merrill Lynch, and Intuit.</p>
           </div>
         </div>
 
@@ -421,10 +505,11 @@
     <!-- Contact -->
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <h2 id="contact-title">Let’s talk.</h2>
-        <p>Exploring AI for your firm, or interested in our real estate work? Reach out and we’ll get back to you.</p>
-        <div class="contact-links">
-          <a href="mailto:info@slateand.co">info@slateand.co</a>
+        <h2 id="contact-title">Let’s start with one workflow.</h2>
+        <p>Exploring AI for your firm? Reach out and we’ll get back to you.</p>
+        <div class="contact-actions">
+          <a class="btn btn-solid" href="mailto:info@slateand.co">Contact</a>
+          <a class="contact-email" href="mailto:info@slateand.co">info@slateand.co</a>
         </div>
       </div>
     </section>
@@ -433,8 +518,45 @@
   <footer class="site-footer">
     <div class="wrap">
       <span>© 2026 Slate &amp; Co.</span>
-      <span>AI · Midwest · Real Estate</span>
+      <a href="mailto:info@slateand.co">info@slateand.co</a>
+      <span>AI · Real Estate · Financial Services · Manufacturing</span>
     </div>
   </footer>
+  <script>
+    (function () {
+      var track = document.querySelector('.carousel-track');
+      if (!track) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var behavior = reduce ? 'auto' : 'smooth';
+
+      function slideStep() {
+        var slide = track.querySelector('.slide');
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return slide.getBoundingClientRect().width + gap;
+      }
+
+      function go(dir) {
+        var max = track.scrollWidth - track.clientWidth;
+        if (dir > 0 && track.scrollLeft >= max - 2) {
+          track.scrollTo({ left: 0, behavior: behavior });
+        } else if (dir < 0 && track.scrollLeft <= 2) {
+          track.scrollTo({ left: max, behavior: behavior });
+        } else {
+          track.scrollBy({ left: dir * slideStep(), behavior: behavior });
+        }
+      }
+
+      document.querySelectorAll('.carousel-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          go(Number(btn.getAttribute('data-dir')));
+        });
+      });
+
+      track.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+      });
+    })();
+  </script>
 </body>
 </html>
